@@ -14,11 +14,11 @@
             </div>
             <div class="flex flex-col gap-4 p-3">
               <h3 class="text-lg text-bold relative">{{product.title.slice(0, 20)}}
-                <span class="absolute left-0 -top-6 text-sm">Count: {{product.rating.count}}</span>
+                <div class="absolute left-0 -top-6 text-sm">Count: <span :class="{'text-red-500': product.rating.count<100, 'text-green-500': product.rating.count>200 }">{{product.rating.count}}</span></div>
               </h3>
               <div class="flex justify-between">
                 <span>Category: {{product.category}}</span>
-                <span>{{product.price}} $</span>
+                <span class="text-red-500">{{product.price}} $</span>
               </div>
             </div>
         </div>
