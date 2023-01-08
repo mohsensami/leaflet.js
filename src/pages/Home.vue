@@ -9,8 +9,10 @@
                 </svg>
                 <span>{{product.rating.rate}}</span>
               </div>
-              
+              <router-link :to="{name: 'single', params: { id: product.id } }" >
               <img class="pt-4 w-36 md:w-64 px-4" :src="product.image" :alt="product.title" />
+
+              </router-link>
             </div>
             <div class="flex flex-col gap-4 p-3">
               <h3 class="text-lg text-bold relative">{{product.title.slice(0, 20)}}
