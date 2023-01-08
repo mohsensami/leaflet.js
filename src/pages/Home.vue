@@ -11,13 +11,12 @@
               </div>
               <router-link :to="{name: 'single', params: { id: product.id } }" >
               <img class="pt-4 w-36 md:w-64 px-4" :src="product.image" :alt="product.title" />
-
               </router-link>
             </div>
             <div class="flex flex-col gap-4 p-3">
-              <h3 class="text-lg text-bold relative">{{product.title.slice(0, 20)}}
+              <router-link :to="{name: 'single', params: { id: product.id } }" ><h3 class="text-lg text-bold relative">{{product.title.slice(0, 20)}}
                 <div class="absolute left-0 -top-6 text-sm">Count: <span :class="{'text-red-500': product.rating.count<100, 'text-green-500': product.rating.count>200 }">{{product.rating.count}}</span></div>
-              </h3>
+              </h3></router-link>
               <div class="flex flex-col gap-2 sm:flex-row justify-between">
                 <span>Category: {{product.category}}</span>
                 <span class="text-red-500">{{product.price}} $</span>
