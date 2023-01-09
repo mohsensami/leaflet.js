@@ -33,23 +33,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, watchEffect } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 
-import LoadingComponent from '../components/LoadingComponent.vue'
+import LoadingComponent from "../components/LoadingComponent.vue";
 
 const route = useRoute();
 
 const products = ref<any>([]);
 const loading = ref(true);
 
+watch(
+  () => route.params.slug,
+  () => {
+      getProducts();
+  },
+);
+
 const getProducts = async () => {
+    loading.value = true;
   await axios
     .get(`https://fakestoreapi.com/products/category/${route.params.slug}`)
     .then(function (response) {
-      products.value = response.data;
-      loading.value = false;
+        products.value = response.data;
+        loading.value = false;
     })
     .catch(function (error) {
       console.log(error);
@@ -63,5 +71,8 @@ onMounted(async () => {
 });
 </script>
 
-<style>
+<style scoped>
+.container {
+    min-height: 800px;
+}
 </style>

@@ -13,6 +13,9 @@
             <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
               <router-link :to="{name: 'home'}">Home</router-link>
             </li>
+            <li class="mx-4" v-for="(cat, index) in categories" :key="index">
+                <router-link :to="{ name: 'category', params: { slug: cat } }">{{cat}}</router-link>
+            </li>
         </ul>
     </nav>
 
@@ -29,7 +32,21 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, reactive } from "vue";
 import axios from "axios";
+
+const categories = reactive<any>({});
+
+const getCategories = async () => {
+      const {data} = await axios.get("https://fakestoreapi.com/products/categories");
+      Object.assign(categories, data);
+    };
+
+onMounted(async () => {
+  try {
+    getCategories();
+  } catch (error) {}
+});
 
 </script>
 
