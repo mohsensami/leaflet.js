@@ -29,13 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import axios from "axios";
 
 </script>
 
-<script lang="ts">
-export default {
-}
-</script>
 
 <style>
 

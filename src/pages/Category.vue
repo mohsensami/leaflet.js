@@ -23,7 +23,7 @@
             Count: <span :class="{ 'text-red-500': product.rating.count < 100, 'text-green-500': product.rating.count > 200 }">{{ product.rating.count }}</span>
           </div>
           <div class="flex flex-col gap-2 sm:flex-row justify-between">
-            <span>Category: <router-link :to="{ name: 'category', params: { slug: product.category } }">{{ product.category }}</router-link></span>
+            <span>Category: {{ product.category }}</span>
             <span class="text-red-500">{{ product.price }} $</span>
           </div>
         </div>
@@ -35,15 +35,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { useRoute } from "vue-router";
 
 import LoadingComponent from '../components/LoadingComponent.vue'
+
+const route = useRoute();
 
 const products = ref<any>([]);
 const loading = ref(true);
 
 const getProducts = async () => {
   await axios
-    .get("https://fakestoreapi.com/products")
+    .get(`https://fakestoreapi.com/products/category/${route.params.slug}`)
     .then(function (response) {
       products.value = response.data;
       loading.value = false;
