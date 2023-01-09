@@ -45,9 +45,15 @@
   </footer>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+
+</script>
+
+<script lang="ts">
+export default {
+}
 </script>
 
 <style>
+
 </style>
