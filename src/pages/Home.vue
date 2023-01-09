@@ -1,5 +1,7 @@
 <template>
-  <div class="container py-8">
+  <LoadingComponent v-if="loading" />
+
+  <div v-else class="container py-8">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <div class="flex flex-col justify-between gap-4 bg-white shadow-md" v-for="(product, index) in products" :key="index">
         <div class="flex justify-center relative">
@@ -15,7 +17,8 @@
         </div>
         <div class="flex flex-col gap-4 p-3">
           <router-link :to="{ name: 'single', params: { id: product.id } }"
-            ><h3 class="text-lg text-bold relative">{{ product.title.slice(0, 20) }}</h3></router-link>
+            ><h3 class="text-lg text-bold relative">{{ product.title.slice(0, 20) }}</h3></router-link
+          >
           <div class="absolute left-0 -top-6 text-sm">
             Count: <span :class="{ 'text-red-500': product.rating.count < 100, 'text-green-500': product.rating.count > 200 }">{{ product.rating.count }}</span>
           </div>
@@ -32,6 +35,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
+
+import LoadingComponent from '../components/LoadingComponent.vue'
+
 const products = ref<any>([]);
 const loading = ref(true);
 
