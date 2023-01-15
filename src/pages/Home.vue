@@ -2,41 +2,51 @@
   <LoadingComponent v-if="loading" />
 
   <div v-else class="container py-8">
-    <div class="flex justify-start space-x-2 my-4">
-      <a @click.prevent="gridColumn = 3" href="">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
-          <rect width="5" height="5"></rect>
-          <rect x="7" width="5" height="5"></rect>
-          <rect x="14" width="5" height="5"></rect>
-          <rect y="7" width="5" height="5"></rect>
-          <rect x="7" y="7" width="5" height="5"></rect>
-          <rect x="14" y="7" width="5" height="5"></rect>
-          <rect y="14" width="5" height="5"></rect>
-          <rect x="7" y="14" width="5" height="5"></rect>
-          <rect x="14" y="14" width="5" height="5"></rect>
-        </svg>
-      </a>
+    <div class="flex justify-between items-center">
+      <div class="flex justify-start space-x-2 my-4">
+        <a @click.prevent="gridColumn = 3" href="">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+            <rect width="5" height="5"></rect>
+            <rect x="7" width="5" height="5"></rect>
+            <rect x="14" width="5" height="5"></rect>
+            <rect y="7" width="5" height="5"></rect>
+            <rect x="7" y="7" width="5" height="5"></rect>
+            <rect x="14" y="7" width="5" height="5"></rect>
+            <rect y="14" width="5" height="5"></rect>
+            <rect x="7" y="14" width="5" height="5"></rect>
+            <rect x="14" y="14" width="5" height="5"></rect>
+          </svg>
+        </a>
 
-      <a @click.prevent="gridColumn = 4" href="">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
-          <rect width="4" height="4"></rect>
-          <rect x="5" width="4" height="4"></rect>
-          <rect x="10" width="4" height="4"></rect>
-          <rect x="15" width="4" height="4"></rect>
-          <rect y="5" width="4" height="4"></rect>
-          <rect x="5" y="5" width="4" height="4"></rect>
-          <rect x="10" y="5" width="4" height="4"></rect>
-          <rect x="15" y="5" width="4" height="4"></rect>
-          <rect y="15" width="4" height="4"></rect>
-          <rect x="5" y="15" width="4" height="4"></rect>
-          <rect x="10" y="15" width="4" height="4"></rect>
-          <rect x="15" y="15" width="4" height="4"></rect>
-          <rect y="10" width="4" height="4"></rect>
-          <rect x="5" y="10" width="4" height="4"></rect>
-          <rect x="10" y="10" width="4" height="4"></rect>
-          <rect x="15" y="10" width="4" height="4"></rect>
-        </svg>
-      </a>
+        <a @click.prevent="gridColumn = 4" href="">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+            <rect width="4" height="4"></rect>
+            <rect x="5" width="4" height="4"></rect>
+            <rect x="10" width="4" height="4"></rect>
+            <rect x="15" width="4" height="4"></rect>
+            <rect y="5" width="4" height="4"></rect>
+            <rect x="5" y="5" width="4" height="4"></rect>
+            <rect x="10" y="5" width="4" height="4"></rect>
+            <rect x="15" y="5" width="4" height="4"></rect>
+            <rect y="15" width="4" height="4"></rect>
+            <rect x="5" y="15" width="4" height="4"></rect>
+            <rect x="10" y="15" width="4" height="4"></rect>
+            <rect x="15" y="15" width="4" height="4"></rect>
+            <rect y="10" width="4" height="4"></rect>
+            <rect x="5" y="10" width="4" height="4"></rect>
+            <rect x="10" y="10" width="4" height="4"></rect>
+            <rect x="15" y="10" width="4" height="4"></rect>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <select class="form-select form-select-sm appearance-none block w-32 px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+          <option value="1">4</option>
+          <option value="1">8</option>
+          <option value="1">12</option>
+          <option value="1">16</option>
+        </select>
+      </div>
     </div>
     <div :class="gridColumn == 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'" class="grid grid-cols-2 gap-4">
       <div class="flex flex-col justify-between gap-4 bg-white shadow-md" v-for="(product, index) in products" :key="index">
