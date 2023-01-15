@@ -2,7 +2,43 @@
   <LoadingComponent v-if="loading" />
 
   <div v-else class="container py-8">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="flex justify-start space-x-2 my-4">
+      <a @click.prevent="gridColumn = 3" href="">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+          <rect width="5" height="5"></rect>
+          <rect x="7" width="5" height="5"></rect>
+          <rect x="14" width="5" height="5"></rect>
+          <rect y="7" width="5" height="5"></rect>
+          <rect x="7" y="7" width="5" height="5"></rect>
+          <rect x="14" y="7" width="5" height="5"></rect>
+          <rect y="14" width="5" height="5"></rect>
+          <rect x="7" y="14" width="5" height="5"></rect>
+          <rect x="14" y="14" width="5" height="5"></rect>
+        </svg>
+      </a>
+
+      <a @click.prevent="gridColumn = 4" href="">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+          <rect width="4" height="4"></rect>
+          <rect x="5" width="4" height="4"></rect>
+          <rect x="10" width="4" height="4"></rect>
+          <rect x="15" width="4" height="4"></rect>
+          <rect y="5" width="4" height="4"></rect>
+          <rect x="5" y="5" width="4" height="4"></rect>
+          <rect x="10" y="5" width="4" height="4"></rect>
+          <rect x="15" y="5" width="4" height="4"></rect>
+          <rect y="15" width="4" height="4"></rect>
+          <rect x="5" y="15" width="4" height="4"></rect>
+          <rect x="10" y="15" width="4" height="4"></rect>
+          <rect x="15" y="15" width="4" height="4"></rect>
+          <rect y="10" width="4" height="4"></rect>
+          <rect x="5" y="10" width="4" height="4"></rect>
+          <rect x="10" y="10" width="4" height="4"></rect>
+          <rect x="15" y="10" width="4" height="4"></rect>
+        </svg>
+      </a>
+    </div>
+    <div :class="gridColumn == 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'" class="grid grid-cols-2 gap-4">
       <div class="flex flex-col justify-between gap-4 bg-white shadow-md" v-for="(product, index) in products" :key="index">
         <div class="flex justify-center relative">
           <div class="flex gap-1 items-center absolute left-0 text-sm p-1">
@@ -23,7 +59,9 @@
             Count: <span :class="{ 'text-red-500': product.rating.count < 100, 'text-green-500': product.rating.count > 200 }">{{ product.rating.count }}</span>
           </div>
           <div class="flex flex-col gap-2 sm:flex-row justify-between">
-            <span>Category: <router-link :to="{ name: 'category', params: { slug: product.category } }">{{ product.category }}</router-link></span>
+            <span
+              >Category: <router-link :to="{ name: 'category', params: { slug: product.category } }">{{ product.category }}</router-link></span
+            >
             <span class="text-red-500">{{ product.price }} $</span>
           </div>
         </div>
@@ -36,10 +74,12 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
-import LoadingComponent from '../components/LoadingComponent.vue'
+import LoadingComponent from "../components/LoadingComponent.vue";
 
 const products = ref<any>([]);
 const loading = ref(true);
+
+const gridColumn = ref(4);
 
 const getProducts = async () => {
   await axios
