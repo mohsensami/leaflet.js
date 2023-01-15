@@ -41,11 +41,11 @@
       </div>
       <div>
         <select @change="changeLimits($event)" class="form-select form-select-sm appearance-none block w-32 px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-          <option value="4">4</option>
-          <option value="8">8</option>
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option selected value="20">20</option>
+          <option :selected="products.length == 4" value="4">4</option>
+          <option :selected="products.length == 8" value="8">8</option>
+          <option :selected="products.length == 12" value="12">12</option>
+          <option :selected="products.length == 16" value="16">16</option>
+          <option :selected="products.length == 20" value="20">20</option>
         </select>
       </div>
     </div>
@@ -93,6 +93,7 @@ const loading = ref(true);
 const gridColumn = ref(4);
 
 const getProducts = async (limit: any = 20) => {
+  loading.value = true;
   await axios
     .get(`https://fakestoreapi.com/products?limit=${limit}`)
     .then(function (response) {
