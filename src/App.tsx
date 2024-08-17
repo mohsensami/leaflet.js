@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Marker, Popup } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet/MapContainer';
+import { TileLayer } from 'react-leaflet/TileLayer';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <>
+            <div className="mt-4 mb-24 ">
+                <div className=" relative">
+                    <MapContainer
+                        className="markercluster-map !h-[800px] z-10"
+                        center={[30.505, 54.09]}
+                        zoom={5.3}
+                        maxZoom={18}
+                        scrollWheelZoom={false}
+                    >
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        />
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+                        <Marker position={[30.505, 55.09]}>
+                            <Popup>
+                                <p>تعداد مجوز: 4</p>
+                            </Popup>
+                        </Marker>
+                        <Marker position={[30.505, 50.09]}>
+                            <Popup>
+                                <p>تعداد مجوز: 4</p>
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default App
+export default App;
