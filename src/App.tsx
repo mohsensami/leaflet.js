@@ -6,10 +6,10 @@ import 'leaflet/dist/leaflet.css';
 function App() {
     return (
         <>
-            <div className="mt-4 mb-24 ">
-                <div className=" relative">
+            <div className="">
+                <div className="relative">
                     <MapContainer
-                        className="markercluster-map !h-[800px] z-10"
+                        className="h-screen z-10"
                         center={[30.505, 54.09]}
                         zoom={5.3}
                         maxZoom={18}
